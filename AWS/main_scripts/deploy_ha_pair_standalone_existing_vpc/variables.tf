@@ -1,7 +1,9 @@
-
+variable "access_key" {}
+variable "secret_key" {}
 
 variable "aws_region" {
   description = "The AWS region to use"
+  default = "us-east-1"
 }
 variable "customer_prefix" {
   description = "Customer Prefix to apply to all resources"
@@ -10,6 +12,34 @@ variable "customer_prefix" {
 variable "environment" {
   description = "The Tag Environment to differentiate prod/test/dev"
 }
+
+#
+# Standalone Variables that need to be provided
+#
+variable "vpc_id" {
+  description = "VPC ID when deploying into an existing VPC"
+}
+
+variable "public_route_table_id" {
+  description = "Route table ID of Public Route table when deploying into an existing VPC"
+}
+
+variable "public1_subnet_id" {
+  description = "Subnet ID of the Public Subnet in AZ1 when deploying into an existing VPC"
+}
+
+variable "public2_subnet_id" {
+  description = "Subnet ID of the Public Subnet in AZ2 when deploying into an existing VPC"
+}
+
+variable "private1_subnet_id" {
+  description = "Subnet ID of the Private Subnet in AZ1 when deploying into an existing VPC"
+}
+
+variable "private2_subnet_id" {
+  description = "Subnet ID of the Private Subnet in AZ1 when deploying into an existing VPC"
+}
+
 variable "availability_zone_1" {
   description = "Availability Zone 1 for VPC"
 }
@@ -199,24 +229,3 @@ variable "fortigate_hostname_1" {
 variable "fortigate_hostname_2" {
   description = "Fortigate Hostname 2"
 }
-
-#
-# Ubuntu Endpoint resources
-#
-variable "ec2_sg_name" {
-  description = "Linux Endpoint Security Group Name"
-}
-variable "linux_instance_type" {
-  description = "Linux Endpoint Instance Type"
-}
-variable "enable_linux_instances" {
-  description = "Boolean to allow creation of Linux Instances in East/West VPCs"
-  type        = bool
-}
-variable "linux_instance_name_east" {
-  description = "Linux Endpoint Instance Name"
-}
-variable "linux_instance_name_west" {
-  description = "Linux Endpoint Instance Name"
-}
-

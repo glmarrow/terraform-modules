@@ -1,8 +1,5 @@
 
 provider "aws" {
-  region     = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
   version    = "~> 3.0"
 }
 
@@ -162,8 +159,6 @@ data "aws_ami" "fortigate_paygo" {
 #
 module "allow_private_subnets" {
   source = "../../modules/security_group"
-  access_key              = var.access_key
-  secret_key              = var.secret_key
   aws_region              = var.aws_region
   vpc_id                  = module.base-vpc.vpc_id
   name                    = "${var.fortigate_sg_name} Allow Private Subnets"
@@ -184,8 +179,6 @@ module "allow_private_subnets" {
 #
 module "allow_public_subnets" {
   source = "../../modules/security_group"
-  access_key              = var.access_key
-  secret_key              = var.secret_key
   aws_region              = var.aws_region
   vpc_id                  = module.base-vpc.vpc_id
   name                    = "${var.fortigate_sg_name} Allow Public Subnets"
@@ -210,8 +203,6 @@ module "allow_public_subnets" {
 #
 module "base-vpc" {
   source                          = "../base_vpc_dual_az"
-  access_key                      = var.access_key
-  secret_key                      = var.secret_key
   aws_region                      = var.aws_region
   customer_prefix                 = var.customer_prefix
   environment                     = var.environment
@@ -232,8 +223,6 @@ module "base-vpc" {
 
 module "vpc-transit-gateway" {
   source                          = "../../modules/tgw"
-  access_key                      = var.access_key
-  secret_key                      = var.secret_key
   aws_region                      = var.aws_region
   customer_prefix                 = var.customer_prefix
   environment                     = var.environment
@@ -265,8 +254,6 @@ resource "aws_route" "tgw2" {
 #
 module "vpc-transit-gateway-attachment-security" {
   source                                          = "../../modules/tgw-attachment"
-  access_key                                      = var.access_key
-  secret_key                                      = var.secret_key
   aws_region                                      = var.aws_region
   customer_prefix                                 = var.customer_prefix
   environment                                     = var.environment
@@ -306,8 +293,6 @@ resource "aws_ec2_transit_gateway_route" "tgw_route_security_cidr" {
 #
 module "vpc-transit-gateway-attachment-east" {
   source                                          = "../../modules/tgw-attachment"
-  access_key                                      = var.access_key
-  secret_key                                      = var.secret_key
   aws_region                                      = var.aws_region
   customer_prefix                                 = var.customer_prefix
   environment                                     = var.environment
@@ -344,8 +329,6 @@ resource "aws_ec2_transit_gateway_route" "tgw_route_east_cidr" {
 #
 module "vpc-transit-gateway-attachment-west" {
   source                          = "../../modules/tgw-attachment"
-  access_key                      = var.access_key
-  secret_key                      = var.secret_key
   aws_region                      = var.aws_region
   customer_prefix                 = var.customer_prefix
   environment                     = var.environment
@@ -395,8 +378,6 @@ resource "aws_default_route_table" "route_security" {
 module "private1-subnet-tgw" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -408,8 +389,7 @@ module "private1-subnet-tgw" {
 
 module "private1_tgw_route_table" {
   source                     = "../../modules/route_table"
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
+
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -422,8 +402,6 @@ module "private1_tgw_route_table" {
 module "private1_tgw_route_table_association" {
   source                     = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -434,8 +412,6 @@ module "private1_tgw_route_table_association" {
 module "private2-subnet-tgw" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -447,8 +423,7 @@ module "private2-subnet-tgw" {
 
 module "private2_tgw_route_table" {
   source                     = "../../modules/route_table"
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
+
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -461,8 +436,6 @@ module "private2_tgw_route_table" {
 module "private2_tgw_route_table_association" {
   source                     = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -473,8 +446,6 @@ module "private2_tgw_route_table_association" {
 module "sync-subnet-1" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -487,8 +458,6 @@ module "sync-subnet-1" {
 module "sync-subnet-2" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -501,8 +470,6 @@ module "sync-subnet-2" {
 module "ha-subnet-1" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -517,8 +484,6 @@ module "ha-subnet-1" {
 module "ha-subnet-2" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -536,8 +501,6 @@ module "ha-subnet-2" {
 module "vpc_s3_endpoint" {
   source                     = "../../modules/vpc_endpoints"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -551,8 +514,6 @@ module "vpc_s3_endpoint" {
 module "vpc-east" {
   source = "../../modules/vpc"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   vpc_name                   = var.vpc_name_east
@@ -563,8 +524,6 @@ module "vpc-east" {
 module "subnet-east" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -593,8 +552,6 @@ resource "aws_default_route_table" "route_east" {
 module "rta-east" {
   source = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = "${var.customer_prefix}-east"
@@ -609,8 +566,6 @@ module "rta-east" {
 module "vpc-west" {
   source = "../../modules/vpc"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   vpc_name                   = var.vpc_name_west
@@ -622,8 +577,6 @@ module "vpc-west" {
 module "subnet-west" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -651,8 +604,6 @@ resource "aws_default_route_table" "route_west" {
 module "rta-west" {
   source = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = "${var.customer_prefix}-west"
@@ -666,8 +617,6 @@ module "rta-west" {
 module "iam_profile" {
   source = "../../modules/fortigate_ha_instance_iam_role"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   customer_prefix             = var.customer_prefix
   environment                 = var.environment
@@ -676,8 +625,6 @@ module "iam_profile" {
 module "fortigate_1" {
   source                      = "../../modules/ec2_instance"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   availability_zone           = var.availability_zone_1
   customer_prefix             = var.customer_prefix
@@ -709,8 +656,6 @@ module "fortigate_1" {
 module "fortigate_2" {
   source                      = "../../modules/ec2_instance"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   availability_zone           = var.availability_zone_2
   customer_prefix             = var.customer_prefix
@@ -776,8 +721,7 @@ data "aws_ami" "ubuntu" {
 #
 module "ec2-east-sg" {
   source = "../../modules/security_group"
-  access_key           = var.access_key
-  secret_key           = var.secret_key
+
   aws_region           = var.aws_region
   vpc_id               = module.vpc-east.vpc_id
   name                 = var.ec2_sg_name
@@ -796,8 +740,7 @@ module "ec2-east-sg" {
 
 module "ec2-west-sg" {
   source = "../../modules/security_group"
-  access_key           = var.access_key
-  secret_key           = var.secret_key
+
   aws_region           = var.aws_region
   vpc_id               = module.vpc-west.vpc_id
   name                 = var.ec2_sg_name
@@ -819,8 +762,6 @@ module "ec2-west-sg" {
 module "linux_iam_profile" {
   source = "../../modules/ec2_instance_iam_role"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   customer_prefix             = var.customer_prefix
   environment                 = var.environment
@@ -832,8 +773,6 @@ module "linux_iam_profile" {
 module "aws_east_linux_instance" {
   source                      = "../../modules/ec2_instance"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   customer_prefix             = var.customer_prefix
   environment                 = var.environment
@@ -857,8 +796,6 @@ module "aws_east_linux_instance" {
 module "aws_west_linux_instance" {
   source                      = "../../modules/ec2_instance"
 
-  access_key                  = var.access_key
-  secret_key                  = var.secret_key
   aws_region                  = var.aws_region
   customer_prefix             = var.customer_prefix
   environment                 = var.environment

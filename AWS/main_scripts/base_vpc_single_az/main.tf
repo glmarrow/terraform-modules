@@ -1,8 +1,6 @@
 
 provider "aws" {
   region     = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
   version    = "~> 3.0"
 }
 
@@ -10,8 +8,6 @@ provider "aws" {
 module "vpc" {
   source = "../../modules/vpc"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -30,8 +26,6 @@ resource "aws_default_route_table" "route_security" {
 module "igw" {
   source = "../../modules/igw"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -41,8 +35,6 @@ module "igw" {
 module "public-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -57,8 +49,6 @@ module "public-subnet" {
 module "public_route_table" {
   source                     = "../../modules/route_table"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -72,8 +62,6 @@ module "public_route_table" {
 module "private-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -86,8 +74,7 @@ module "private-subnet" {
 
 module "private_route_table" {
   source                     = "../../modules/route_table"
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
+
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -98,8 +85,6 @@ module "private_route_table" {
 module "private_route_table_association" {
   source                     = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment

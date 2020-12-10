@@ -1,5 +1,3 @@
-variable "access_key" {}
-variable "secret_key" {}
 
 variable "customer_prefix" {
   description = "Customer Prefix to apply to all resources"

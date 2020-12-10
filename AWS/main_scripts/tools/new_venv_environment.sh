@@ -63,15 +63,16 @@ then
 fi
 tput clear
 
-#sudo apt remove python python3.5 python3.6 python3.7 --yes
-#sudo apt-get install python3.7 python3.7-venv python3-pip --yes
-#sudo apt-get upgrade --yes
+sudo apt remove python python3.5 python3.6 python3.7 --yes
+sudo apt-get install python3.7 python3.7-venv python3-pip --yes
+sudo apt-get upgrade --yes
 python3.7 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip3.7 install -r requirements.txt
-sudo apt install snap snapd --yes
-sudo snap install terraform
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt install terraform
 
 #
 # Now modify the appropriate files based on user input

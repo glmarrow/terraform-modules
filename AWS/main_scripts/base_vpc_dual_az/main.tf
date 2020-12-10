@@ -1,8 +1,6 @@
 
 provider "aws" {
   region     = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
   version    = "~> 3.0"
 }
 
@@ -10,8 +8,6 @@ provider "aws" {
 module "vpc" {
   source = "../../modules/vpc"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -30,8 +26,6 @@ resource "aws_default_route_table" "route_public" {
 module "igw" {
   source = "../../modules/igw"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -41,8 +35,6 @@ module "igw" {
 module "public1-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -57,8 +49,6 @@ module "public1-subnet" {
 module "private1-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -71,8 +61,6 @@ module "private1-subnet" {
 module "public2-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -87,8 +75,6 @@ module "public2-subnet" {
 module "private2-subnet" {
   source = "../../modules/subnet"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   environment                = var.environment
   customer_prefix            = var.customer_prefix
@@ -101,8 +87,6 @@ module "private2-subnet" {
 module "public_route_table" {
   source                     = "../../modules/route_table"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -114,8 +98,7 @@ module "public_route_table" {
 
 module "private1_route_table" {
   source                     = "../../modules/route_table"
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
+
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -127,8 +110,6 @@ module "private1_route_table" {
 module "private1_route_table_association" {
   source                     = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -138,8 +119,6 @@ module "private1_route_table_association" {
 
 module "private2_route_table" {
   source                     = "../../modules/route_table"
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment
@@ -150,8 +129,6 @@ module "private2_route_table" {
 module "private2_route_table_association" {
   source                     = "../../modules/route_table_association"
 
-  access_key                 = var.access_key
-  secret_key                 = var.secret_key
   aws_region                 = var.aws_region
   customer_prefix            = var.customer_prefix
   environment                = var.environment

@@ -1,11 +1,17 @@
 provider "aws" {
   region     = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
+}
+
+resource "random_string" "random" {
+  length = r
+  special = false
+  lower = true
+  upper = false
+  number = false
 }
 
 resource "aws_iam_role" "fortigate_role" {
-  name = "fortigate_role-${var.customer_prefix}-${var.environment}"
+  name = "fortigate_role-${var.customer_prefix}-${var.environment}-${random_string.random}"
 
   assume_role_policy = <<EOF
 {
@@ -28,12 +34,12 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "fortigate_profile" {
-  name = "fortigate_profile-${var.customer_prefix}-${var.environment}"
+  name = "fortigate_profile-${var.customer_prefix}-${var.environment}-${random_string.random}"
   role = aws_iam_role.fortigate_role.name
 }
 
 resource "aws_iam_role_policy" "fortigate_policy" {
-  name = "fortigate_policy-${var.customer_prefix}-${var.environment}"
+  name = "fortigate_policy-${var.customer_prefix}-${var.environment}-${random_string.random}"
   role = aws_iam_role.fortigate_role.id
 
   policy = <<EOF
