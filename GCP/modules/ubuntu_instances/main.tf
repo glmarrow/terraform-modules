@@ -1,6 +1,7 @@
 
-resource "google_compute_instance" "bastion_instance" {
-  name         = "${var.name}-bastion-host-${var.random_string}"
+resource "google_compute_instance" "ubuntu_instance" {
+  count        = var.instance_count
+  name         = "${var.name}-ubuntu-instance-${var.random_string}-${count.index}"
   zone         = var.zone
   machine_type = var.machine
   #tags
@@ -14,9 +15,7 @@ resource "google_compute_instance" "bastion_instance" {
   network_interface {
     network    = var.public_vpc_network
     subnetwork = var.public_subnet
-    access_config {
-      nat_ip = var.static_ip
-    }
+    access_config {}
   }
 
   # Email will be the service account

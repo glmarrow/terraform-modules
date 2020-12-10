@@ -1,36 +1,37 @@
-# HA Active-Active
+# Packet Mirroring
 
-This example creates a HA Active-Active configuration.
+This example creates Packet Mirroring configuration.
 
-![Image of HA Active/Active](/GCP/examples/ha-active-active/HA-Active-Active.png)
+![Image of Packet Mirroring](/GCP/examples/packet-mirroring/Packet_Mirroring.png)
 
 ## Instances included in this Configuration
 
-1. 2 VPC Networks
+1. 4 VPC Networks
     - Public/Internal
     - Private/External
+    - Peering
+    - Mirroring
 1. Subnets for each VPC Network
     - Public
     - Private
+    - Peering
+    - Mirroring
 1. Firewalls
     - Creates 'INGRESS' and 'EGRESS' rules allowing all protocols.
-1. Managed Instance Group
-    - Autohealing
+1. UnManaged Instance Group
 1. Instance Template
     - Including Bootstrap of configuration for FortiGate.
         - Configures admin_port, static route, probe-response, firewall service custom, firewall policy.
         - Adds loopback, Virtual IPs.
-1. 2 FortiGate Compute Instances
-1. 1 Bastion Host with Windows Image to connect to FortiGate Management GUI
-1. External Load Balancer
+1. 3 Instances
+    - 1 FGT Instance
+        - With bootstrapping admin-port and password
+    - 2 Ubuntu VMs 
 1. Internal Load Balancer
 1. Health Check(s)
-1. Cloud Router
-1. Cloud NAT
 
 ## Connection to FortiGate Management GUI
-- To connect to the FortiGate Management GUI, one has to RDP into the Bastion Host and install Firefox.
-- Once done, enter the Internal IP (nic0) of the FortiGate with port 8443 (or whatever defined in terraform.tfvars for 'admin_port')
+- To connect to the FortiGate Management GUI, use FortiGate IP with port 8443 (or whatever defined in terraform.tfvars for 'admin_port')
 
 ## How do you run these examples?
 

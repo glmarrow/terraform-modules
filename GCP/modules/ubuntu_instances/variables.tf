@@ -2,6 +2,16 @@
 # REQUIRED PARAMETERS
 # These parameters must be supplied when consuming this module.
 # ---------------------------------------------------------------------------------------------------------------------
+variable "image" {
+  type        = string
+  description = "Image"
+}
+
+variable "machine" {
+  type        = string
+  description = "Machine Type"
+}
+
 variable "service_account" {
   type        = string
   description = "Service Account"
@@ -10,32 +20,6 @@ variable "service_account" {
 variable "zone" {
   type        = string
   description = "Zone"
-}
-
-variable "machine" {
-  type        = string
-  description = "Machine Type"
-}
-
-variable "password" {
-  type        = string
-  default     = "ftntCl0ud"
-  description = "FGT Password"
-}
-
-variable "image" {
-  type        = string
-  description = "FortiGate Image"
-}
-
-variable "license_file" {
-  type        = string
-  description = "License File"
-}
-
-variable "public_subnet_gateway" {
-  type        = string
-  description = "Active Instance Port1 Gateway"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -54,28 +38,18 @@ variable "random_string" {
   description = "Random String"
 }
 
+variable "instance_count" {
+  default     = 1
+  description = "Instance Count"
+}
+
 variable "public_vpc_network" {
   type        = string
   default     = "public_vpc_network_1"
   description = "Public VPC Network"
 }
 
-variable "private_vpc_network" {
-  default     = "private_vpc_network_1"
-  description = "Private VPC Network"
-}
-
 variable "public_subnet" {
   default     = "public_subnet"
   description = "Public Subnet"
-}
-
-variable "private_subnet" {
-  default     = "private_subnet"
-  description = "Private Subnet"
-}
-
-variable "static_ip" {
-  default     = "static_ip"
-  description = "Static IP Address"
 }
