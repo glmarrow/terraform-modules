@@ -1,6 +1,6 @@
 
 provider "aws" {
-  version    = "~> 3.0"
+  region     = var.aws_region
 }
 
 data "template_file" "fgt_userdata_byol1" {
