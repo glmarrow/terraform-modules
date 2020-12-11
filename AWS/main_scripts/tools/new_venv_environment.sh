@@ -102,4 +102,11 @@ sed -i '/^environment/ s/"[^"][^"]*"/"'$customer_environment'"/' ./terraform/ter
 sed -i '/^keypair/ s/"[^"][^"]*"/"'$keypair'"/' ./terraform/terraform.tfvars
 
 tput clear
+
+echo
+echo "Creating blank license files: ./licenses/fgt1-license.lic, ./licenses/fgt2-license.lic"
+echo "Update these files with valid licenses if you are using BYOL"
+echo
+
+touch ./licenses/fgt1-license.lic ./licenses/fgt2-license.lic
 echo "Verify the ./terraform/terraform.tfvars file for correct parameters"
